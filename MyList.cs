@@ -3,6 +3,21 @@ namespace Lesson
     class MyList
     {
         public Node head;
+
+        public void reverse(){
+            Node currentNode = head;
+            if(currentNode == null) return;
+            Node previosNode = null;
+            Node nextNode = currentNode.Next;
+            currentNode.Next = previosNode;
+            while(nextNode != null){
+                previosNode = currentNode;
+                currentNode = nextNode;
+                nextNode = nextNode.Next;
+                currentNode.Next = previosNode;
+            }
+            head = currentNode;
+        }
         public void AddFirst(string value)
         {
             Node newNode = new Node();
@@ -72,6 +87,10 @@ namespace Lesson
             if (current == null)
             {
                 return null;
+            }
+            if(current.Next == null){
+                head = null;
+                return current;
             }
             while (current.Next != null)
             {
